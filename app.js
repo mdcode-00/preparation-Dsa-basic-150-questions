@@ -94,3 +94,20 @@ function sumAll(num) {
 }
 
 sumAll(5)
+
+
+
+//////////Automating Factorial Calculation for Combinatorics
+
+function factorial(num) {
+  if (!num) return 1  // factorial of 0 is 1
+
+  let total = 1
+  for (let i = num; i > 0; i--) {
+    console.log(i)
+    total *= i
+  }
+  return total
+}
+
+console.log(factorial(5)) // 120
