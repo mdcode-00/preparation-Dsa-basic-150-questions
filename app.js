@@ -138,3 +138,16 @@ function reverse(str) {
 // Example usage
 console.log('HCF of 48 and 18:', hcf(48, 18)) // 6
 console.log("Reverse of 'hello':", reverse('hello')) // 'olleh'
+
+
+
+function reverse(str) {
+  let result = ''
+  for (let i = str.length - 1; i >= 0; i--) {
+    console.log(i) // optional: shows index
+    result += str[i]
+  }
+  return result
+}
+
+console.log(reverse('hello')) // 'olleh'
