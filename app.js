@@ -78,3 +78,19 @@ leapYear(2024);
 leapYear(1997);
 leapYear(2023);
 leapYear(2020);
+
+
+///////Quickly Summing Natural Numbers for a Math Challenge
+
+function sumAll(num) {
+  if (!num) return 0
+
+  let total = 0
+
+  for (let i = 1; i <= num; i++) {
+    total += i
+  }
+  return total
+}
+
+sumAll(5)
