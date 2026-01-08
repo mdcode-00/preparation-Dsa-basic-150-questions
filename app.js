@@ -111,3 +111,30 @@ function factorial(num) {
 }
 
 console.log(factorial(5)) // 120
+
+
+
+/////Summing the Digits to Find the Digital Root
+
+// HCF Function
+function hcf(num1, num2) {
+  while (num2 !== 0) {
+    let temp = num2
+    num2 = num1 % num2
+    num1 = temp
+  }
+  return num1
+}
+
+// Reverse String Function
+function reverse(str) {
+  let result = ''
+  for (let i = str.length - 1; i >= 0; i--) {
+    result += str[i]
+  }
+  return result
+}
+
+// Example usage
+console.log('HCF of 48 and 18:', hcf(48, 18)) // 6
+console.log("Reverse of 'hello':", reverse('hello')) // 'olleh'
