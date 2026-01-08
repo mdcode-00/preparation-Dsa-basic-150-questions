@@ -53,3 +53,28 @@ const prime = (num) => {
 };
 
 prime(4);
+
+
+//////Detecting Leap Years While Building a Calendar App
+
+
+function leapYear(year) {
+  if (!year) {
+    console.log("Enter a year");
+    return;
+  }
+
+  if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+    console.log(`${year} is a leap year`);
+  } else {
+    console.log(`${year} is not a leap year`);
+  }
+}
+
+// Test cases
+leapYear(1900);
+leapYear(2000);
+leapYear(2024);
+leapYear(1997);
+leapYear(2023);
+leapYear(2020);
