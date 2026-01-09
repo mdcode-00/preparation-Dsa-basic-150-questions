@@ -140,7 +140,7 @@ console.log('HCF of 48 and 18:', hcf(48, 18)) // 6
 console.log("Reverse of 'hello':", reverse('hello')) // 'olleh'
 
 
-
+///reverse string
 function reverse(str) {
   let result = ''
   for (let i = str.length - 1; i >= 0; i--) {
@@ -151,3 +151,23 @@ function reverse(str) {
 }
 
 console.log(reverse('hello')) // 'olleh'
+
+
+// Palindrome checker
+function palindrome(str) {
+  if (!str) return console.log("write palindrome");
+
+  let left = 0;
+  let right = str.length - 1;
+
+  while (right >= left) {
+    if (str[left] !== str[right]) {
+      return false;
+    }
+    left++;
+    right--;
+  }
+  return true;
+}
+
+palindrome("madam");
