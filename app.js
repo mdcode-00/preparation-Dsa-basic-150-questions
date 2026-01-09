@@ -190,3 +190,13 @@ function Fibonacci(num) {
 }
 
 Fibonacci(6);
+
+
+
+// Celsius to Fahrenheit converter
+function celsius(num) {
+  if (num === undefined) return "enter temperature";
+  return Math.floor((num * 9) / 5 + 32);
+}
+
+celsius(1);
