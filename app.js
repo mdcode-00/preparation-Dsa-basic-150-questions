@@ -125,6 +125,7 @@ function hcf(num1, num2) {
   }
   return num1
 }
+console.log('HCF of 48 and 18:', hcf(48, 18)) // 6
 
 // Reverse String Function
 function reverse(str) {
@@ -136,7 +137,6 @@ function reverse(str) {
 }
 
 // Example usage
-console.log('HCF of 48 and 18:', hcf(48, 18)) // 6
 console.log("Reverse of 'hello':", reverse('hello')) // 'olleh'
 
 
@@ -200,3 +200,22 @@ function celsius(num) {
 }
 
 celsius(1);
+
+/////Add LCM and HCF calculation
+function lcm(num1, num2) {
+  function hcf(a, b) {
+    while (b !== 0) {
+      let temp = b;
+      b = a % b;
+      a = temp;
+    }
+    return a;
+  }
+
+  let result = (num1 * num2) / hcf(num1, num2);
+  console.log("HCF:", hcf(num1, num2));
+  console.log("LCM:", result);
+  return result;
+}
+
+lcm(12, 15);
