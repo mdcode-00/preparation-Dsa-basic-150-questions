@@ -243,3 +243,19 @@ function findVowel(str) {
 }
 
 console.log(findVowel(" hello world "));
+
+
+
+////Add function to reverse a string 
+function reverse(str) {
+  let reversed = '';
+
+  for (let i = str.length - 1; i >= 0; i--) {
+    reversed += str[i];
+  }
+
+  return reversed;
+}
+
+// Example usage
+console.log(reverse("programming")); // Output: "gnimmargorp"
