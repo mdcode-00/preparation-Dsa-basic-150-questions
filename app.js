@@ -259,3 +259,23 @@ function reverse(str) {
 
 // Example usage
 console.log(reverse("programming")); // Output: "gnimmargorp"
+
+
+
+/////Add function to find max and min numbers in an array
+function maxMin(num) {
+  if (num.length === 0) return "Array is empty";
+
+  let maxNum = num[0];
+  let smallest = num[0];
+
+  for (let i = 0; i < num.length; i++) {
+    if (num[i] > maxNum) maxNum = num[i];
+    if (num[i] < smallest) smallest = num[i];
+  }
+
+  return `Max number: ${maxNum}, Smallest number: ${smallest}`;
+}
+
+// Example usage
+console.log(maxMin([4, 7, 1, 8, 5])); // Output: Max number: 8, Smallest number: 1
