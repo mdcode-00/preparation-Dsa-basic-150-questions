@@ -279,3 +279,28 @@ function maxMin(num) {
 
 // Example usage
 console.log(maxMin([4, 7, 1, 8, 5])); // Output: Max number: 8, Smallest number: 1
+
+
+
+/////Add array sorting function using selection sort
+function acc(num) {
+  // Create a copy of the array
+  let arr = num.slice();
+
+  // Simple selection sort
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] > arr[j]) {
+        let temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+      }
+    }
+  }
+
+  return arr;
+}
+
+// Example usage
+console.log(acc([3, 1, 4, 1, 5, 9])); // [1, 1, 3, 4, 5, 9]
+console.log(acc([10, 2, 8, 6]));      // [2, 6, 8, 10]
