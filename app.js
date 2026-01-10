@@ -219,3 +219,27 @@ function lcm(num1, num2) {
 }
 
 lcm(12, 15);
+
+
+
+
+///Add vowel and non-vowel counter function
+function findVowel(str) {
+  let vowels = ["a", "e", "i", "o", "u"];
+  let notVowel = 0;
+  let vowelCount = 0;
+
+  let secStr = str.replaceAll(" ", "");
+
+  for (let i = 0; i < secStr.length; i++) {
+    if (vowels.includes(secStr[i].toLowerCase())) {
+      vowelCount += 1;
+    } else {
+      notVowel += 1;
+    }
+  }
+
+  return `Vowels: ${vowelCount}, Non-vowels: ${notVowel}`;
+}
+
+console.log(findVowel(" hello world "));
