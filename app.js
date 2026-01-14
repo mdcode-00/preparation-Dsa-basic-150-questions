@@ -304,3 +304,23 @@ function acc(num) {
 // Example usage
 console.log(acc([3, 1, 4, 1, 5, 9])); // [1, 1, 3, 4, 5, 9]
 console.log(acc([10, 2, 8, 6]));      // [2, 6, 8, 10]
+
+
+
+///// Add all numbers in an array
+function acc(num) {
+  if (!Array.isArray(num) || num.length === 0) return 0;
+
+  let result = num[0];
+
+  for (let i = 1; i < num.length; i++) {
+    result = num[i] + result;
+    console.log(num[i] + 2); // optional debug output
+  }
+
+  return result;
+}
+
+// Example usage
+console.log(acc([1, 2, 3, 4, 5]));  // 15
+console.log(acc([10, 20, 30]));     // 60
