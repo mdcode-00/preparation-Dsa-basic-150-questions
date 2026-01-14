@@ -352,3 +352,34 @@ console.log(acc(1, 500));
 
 console.log(acc(1, 1000));
 // [1, 153, 370, 371, 407]
+
+
+
+
+///// Print multiplication table for a given number
+function accMultiplication(num) {
+  if (!num) return "Enter number";
+
+  for (let i = 1; i <= 10; i++) {
+    let result = num * i;
+    console.log(`${num} X ${i} = ${result}`);
+  }
+}
+
+// Example usage
+accMultiplication(5);
+/*
+5 X 1 = 5
+5 X 2 = 10
+5 X 3 = 15
+...
+5 X 10 = 50
+*/
+
+accMultiplication(12);
+/*
+12 X 1 = 12
+12 X 2 = 24
+...
+12 X 10 = 120
+*/
