@@ -420,3 +420,66 @@ function accPrimeRange(f, l) {
 // Example usage
 console.log(accPrimeRange(10, 30));
 // [11, 13, 17, 19, 23, 29]
+
+
+///////////////////////////////////hard one/////////////////////////////////////////
+
+
+///// Process an array: sum, perfect square check, digits, GCD, and primality
+function accHard(num) {
+  if (!Array.isArray(num) || num.length === 0) return "Enter a valid array";
+
+  // 1️⃣ Sum of array elements
+  let sum = 0;
+  for (let i = 0; i < num.length; i++) {
+    sum += num[i];
+  }
+  console.log("Sum:", sum);
+
+  // 2️⃣ Check if sum is a perfect square
+  let isPerfectSquare = false;
+  for (let i = 1; i * i <= sum; i++) {
+    if (i * i === sum) {
+      isPerfectSquare = true;
+      break;
+    }
+  }
+  if (isPerfectSquare) console.log("Perfect square.");
+
+  // 3️⃣ Split sum into digits
+  let digitsStr = sum.toString();
+  let digits = digitsStr.split('').map(Number);
+  console.log("Digits:", digits);
+
+  // 4️⃣ Helper function: GCD
+  function hcl(a, b) {
+    while (b !== 0) {
+      [a, b] = [b, a % b];
+    }
+    return a;
+  }
+
+  // 5️⃣ Find GCD of digits
+  let result = digits[0];
+  for (let i = 1; i < digits.length; i++) {
+    result = hcl(result, digits[i]);
+  }
+  console.log("GCD of digits:", result);
+
+  // 6️⃣ Check if GCD is prime
+  if (result < 2) {
+    console.log("Not prime");
+    return;
+  }
+  let primeFlag = true;
+  for (let i = 2; i * i <= result; i++) {
+    if (result % i === 0) {
+      primeFlag = false;
+      break;
+    }
+  }
+  console.log(primeFlag ? "Prime" : "Not prime");
+}
+
+// Example usage
+accHard([50, 35, 36]);
