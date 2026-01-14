@@ -383,3 +383,22 @@ accMultiplication(12);
 ...
 12 X 10 = 120
 */
+
+
+///// Check if a number is prime
+function accIsPrime(n) {
+  if (n < 2) return false;
+
+  for (let i = 2; i * i <= n; i++) {
+    if (n % i === 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
+// Example usage
+console.log(accIsPrime(1));   // false
+console.log(accIsPrime(2));   // true
+console.log(accIsPrime(17));  // true
+console.log(accIsPrime(20));  // false
