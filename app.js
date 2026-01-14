@@ -324,3 +324,31 @@ function acc(num) {
 // Example usage
 console.log(acc([1, 2, 3, 4, 5]));  // 15
 console.log(acc([10, 20, 30]));     // 60
+
+
+///// Find Armstrong numbers in a given range
+function acc(start, end) {
+  let result = [];
+
+  for (let i = start; i <= end; i++) {
+    let digits = i.toString();
+    let sum = 0;
+
+    for (let d of digits) {
+      sum += d * d * d;
+    }
+
+    if (sum === i) {
+      result.push(i);
+    }
+  }
+
+  return result;
+}
+
+// Example usage
+console.log(acc(1, 500));
+// [1, 153, 370, 371, 407]
+
+console.log(acc(1, 1000));
+// [1, 153, 370, 371, 407]
