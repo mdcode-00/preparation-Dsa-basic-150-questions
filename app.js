@@ -402,3 +402,21 @@ console.log(accIsPrime(1));   // false
 console.log(accIsPrime(2));   // true
 console.log(accIsPrime(17));  // true
 console.log(accIsPrime(20));  // false
+
+
+///// Find all prime numbers in a given range
+function accPrimeRange(f, l) {
+  let result = [];
+
+  for (let i = f; i <= l; i++) {
+    if (accIsPrime(i)) {
+      result.push(i);
+    }
+  }
+
+  return result;
+}
+
+// Example usage
+console.log(accPrimeRange(10, 30));
+// [11, 13, 17, 19, 23, 29]
