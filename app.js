@@ -526,3 +526,28 @@ function find(num) {
 console.log(find(5)) // 3
 console.log(find(1)) // 0
 console.log(find(7)) // 8
+
+
+///////////////Add function to find prime numbers up to a given limit
+function findPrimes(num) {
+  let result = []
+
+  for (let i = 2; i < num; i++) {
+    let prime = true
+
+    for (let j = 2; j * j <= i; j++) {
+      if (i % j === 0) {
+        prime = false
+        break
+      }
+    }
+
+    if (prime) {
+      result.push(i)
+    }
+  }
+
+  return result
+}
+
+console.log(findPrimes(20)) // [2, 3, 5, 7, 11, 13, 17, 19]
