@@ -483,3 +483,22 @@ function accHard(num) {
 
 // Example usage
 accHard([50, 35, 36]);
+
+
+////////////Add recursive function to sum odd numbers in range
+
+function rece(range, index = range[0], end = range[1], result = 0) {
+  if (index > end) {
+    return result
+  }
+
+  if (index % 2 !== 0) {
+    result += index
+  }
+
+  return rece(range, index + 1, end, result)
+}
+
+console.log(rece([1, 10])) // 25
+console.log(rece([2, 5]))  // 8
+console.log(rece([10, 10])) // 0
