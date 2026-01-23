@@ -573,3 +573,24 @@ function countDigits(num) {
 console.log(countDigits(12345)) // 5
 console.log(countDigits(0))     // 1
 console.log(countDigits(-987))  // 3
+
+
+//////////Add function to check Narcissistic (Armstrong) numbers
+function isNarcissistic(num) {
+  let realNum = Math.abs(num).toString()
+  let digits = realNum.length
+  let result = 0
+
+  for (let digit of realNum) {
+    result += Math.pow(Number(digit), digits)
+  }
+
+  return result === num
+    ? "Narcissistic Number"
+    : "Not a Narcissistic Number"
+}
+
+// Tests
+console.log(isNarcissistic(153))   // Narcissistic Number
+console.log(isNarcissistic(9474))  // Narcissistic Number
+console.log(isNarcissistic(123))   // Not a Narcissistic Number
