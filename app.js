@@ -502,3 +502,27 @@ function rece(range, index = range[0], end = range[1], result = 0) {
 console.log(rece([1, 10])) // 25
 console.log(rece([2, 5]))  // 8
 console.log(rece([10, 10])) // 0
+
+
+//////////////Add iterative Fibonacci function
+function find(num) {
+  if (num <= 0) return null
+
+  if (num === 1) return 0
+  if (num === 2) return 1
+
+  let pre = 0
+  let curr = 1
+
+  for (let i = 3; i <= num; i++) {
+    let next = pre + curr
+    pre = curr
+    curr = next
+  }
+
+  return curr
+}
+
+console.log(find(5)) // 3
+console.log(find(1)) // 0
+console.log(find(7)) // 8
