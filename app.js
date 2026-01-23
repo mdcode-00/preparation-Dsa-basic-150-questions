@@ -551,3 +551,25 @@ function findPrimes(num) {
 }
 
 console.log(findPrimes(20)) // [2, 3, 5, 7, 11, 13, 17, 19]
+
+
+////////////Add function to count digits in a number
+
+function countDigits(num) {
+  if (num === 0) return 1
+
+  let count = 0
+  let number = Math.abs(num)
+
+  while (number > 0) {
+    count++
+    number = Math.floor(number / 10)
+  }
+
+  return count
+}
+
+// Tests
+console.log(countDigits(12345)) // 5
+console.log(countDigits(0))     // 1
+console.log(countDigits(-987))  // 3
