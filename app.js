@@ -705,3 +705,33 @@ function findMissingNumbers(sequence) {
 console.log(findMissingNumbers([1, 2, 4, 5]))          // [3]
 console.log(findMissingNumbers([2, 3, 7, 6, 8, 1]))    // [4, 5]
 console.log(findMissingNumbers([1, 2, 3]))             // []
+
+
+////Add function to generate flattened Pascal's Triangle
+function pascalTriangleFlattened(numRows) {
+  if (numRows <= 0) return []
+
+  let result = []
+  let previousRow = []
+
+  for (let i = 0; i < numRows; i++) {
+    let currentRow = []
+
+    currentRow[0] = 1
+    currentRow[i] = 1
+
+    for (let j = 1; j < i; j++) {
+      currentRow[j] = previousRow[j - 1] + previousRow[j]
+    }
+
+    result.push(...currentRow)
+    previousRow = currentRow
+  }
+
+  return result
+}
+
+// Tests
+console.log(pascalTriangleFlattened(4)) // [1, 1,1, 1,2,1, 1,3,3,1]
+console.log(pascalTriangleFlattened(1)) // [1]
+console.log(pascalTriangleFlattened(5)) // [1,1,1,1,2,1,1,3,3,1,1,4,6,4,1]
