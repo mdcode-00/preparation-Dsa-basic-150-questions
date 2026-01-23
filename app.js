@@ -639,3 +639,46 @@ function factorialDigitSum(num) {
 // Tests
 console.log(factorialDigitSum(4))  // 6  (4! = 24 → 2 + 4)
 console.log(factorialDigitSum(10)) // 27 (10! = 3628800)
+
+
+/////Add function to find all longest palindromic substrings
+
+function allLongestPalindromes(s) {
+  let maxLen = 0
+  let palindromes = []
+
+  function expand(left, right) {
+    while (
+      left >= 0 &&
+      right < s.length &&
+      s[left] === s[right]
+    ) {
+      let curr = s.slice(left, right + 1)
+
+      if (curr.length > maxLen) {
+        maxLen = curr.length
+        palindromes = [curr]
+      } else if (
+        curr.length === maxLen &&
+        !palindromes.includes(curr)
+      ) {
+        palindromes.push(curr)
+      }
+
+      left--
+      right++
+    }
+  }
+
+  for (let i = 0; i < s.length; i++) {
+    expand(i, i)       // odd-length palindromes
+    expand(i, i + 1)   // even-length palindromes
+  }
+
+  return palindromes
+}
+
+// Tests
+console.log(allLongestPalindromes("babad")) // ["bab", "aba"]
+console.log(allLongestPalindromes("cbbd"))  // ["bb"]
+console.log(allLongestPalindromes("a"))     // ["a"]
