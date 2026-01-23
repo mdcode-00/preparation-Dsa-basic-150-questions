@@ -682,3 +682,26 @@ function allLongestPalindromes(s) {
 console.log(allLongestPalindromes("babad")) // ["bab", "aba"]
 console.log(allLongestPalindromes("cbbd"))  // ["bb"]
 console.log(allLongestPalindromes("a"))     // ["a"]
+
+
+
+/////Add function to find missing numbers in a sequence
+function findMissingNumbers(sequence) {
+  if (!Array.isArray(sequence) || sequence.length === 0) return []
+
+  let result = []
+  let maxNum = Math.max(...sequence)
+
+  for (let i = 1; i < maxNum; i++) {
+    if (!sequence.includes(i)) {
+      result.push(i)
+    }
+  }
+
+  return result
+}
+
+// Tests
+console.log(findMissingNumbers([1, 2, 4, 5]))          // [3]
+console.log(findMissingNumbers([2, 3, 7, 6, 8, 1]))    // [4, 5]
+console.log(findMissingNumbers([1, 2, 3]))             // []
