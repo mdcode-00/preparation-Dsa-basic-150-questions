@@ -613,3 +613,29 @@ function pattern(num) {
 console.log(pattern(3)) // [1, 2, 3, 4, 5, 6]
 console.log(pattern(1)) // [1, 2]
 console.log(pattern(2)) // [1, 2, 3, 4]
+
+
+
+//////////////Add function to calculate factorial digit sum
+function factorialDigitSum(num) {
+  if (num < 0) return null
+
+  let factorial = 1
+
+  for (let i = num; i > 1; i--) {
+    factorial *= i
+  }
+
+  let result = 0
+  let str = factorial.toString()
+
+  for (let digit of str) {
+    result += Number(digit)
+  }
+
+  return result
+}
+
+// Tests
+console.log(factorialDigitSum(4))  // 6  (4! = 24 → 2 + 4)
+console.log(factorialDigitSum(10)) // 27 (10! = 3628800)
