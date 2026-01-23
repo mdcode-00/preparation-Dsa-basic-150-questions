@@ -594,3 +594,22 @@ function isNarcissistic(num) {
 console.log(isNarcissistic(153))   // Narcissistic Number
 console.log(isNarcissistic(9474))  // Narcissistic Number
 console.log(isNarcissistic(123))   // Not a Narcissistic Number
+
+
+
+/////Add function to generate simple numeric pattern
+
+function pattern(num) {
+  let result = []
+
+  for (let i = 1; i <= num * 2; i++) {
+    result.push(i)
+  }
+
+  return result
+}
+
+// Tests
+console.log(pattern(3)) // [1, 2, 3, 4, 5, 6]
+console.log(pattern(1)) // [1, 2]
+console.log(pattern(2)) // [1, 2, 3, 4]
