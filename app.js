@@ -735,3 +735,25 @@ function pascalTriangleFlattened(numRows) {
 console.log(pascalTriangleFlattened(4)) // [1, 1,1, 1,2,1, 1,3,3,1]
 console.log(pascalTriangleFlattened(1)) // [1]
 console.log(pascalTriangleFlattened(5)) // [1,1,1,1,2,1,1,3,3,1,1,4,6,4,1]
+
+
+// Add seq function with detailed comments and example usage
+function seq(s) {
+  let num = 1;     // Initialize the starting number
+  let res = [];    // Array to store the resulting sequence
+
+  // Outer loop for the number of rows
+  for (let i = 1; i <= s; i++) {
+    
+    // Inner loop for numbers in each row
+    for (let j = 1; j <= i; j++) {
+      res.push(num); // Add the current number to the result array
+      num++;         // Increment number for the next iteration
+    }
+  }
+
+  return res; // Return the complete sequence
+}
+
+// Example usage: generates the sequence for 3 rows
+console.log(seq(3)); // Output: [1, 2, 3, 4, 5, 6]
