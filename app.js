@@ -785,3 +785,19 @@ function ad(num) {
 ad(4)
 ad(6)
 ad(1)
+
+
+// Add perfect square function
+function fi(num) {
+ if(num === undefined)return "num not given"
+  if(num <0)return false
+for(let i = 1; i<=num; i++){
+  if(i*i === num){
+    return true
+  }
+}
+  return false
+}
+fi(16)
+fi(20)
+fi(1)
