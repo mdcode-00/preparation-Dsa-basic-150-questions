@@ -757,3 +757,31 @@ function seq(s) {
 
 // Example usage: generates the sequence for 3 rows
 console.log(seq(3)); // Output: [1, 2, 3, 4, 5, 6]
+
+
+// Loop	O(n)	O(1)
+
+// Formula	O(1)	O(1)
+
+function ad(num) {
+  if(!num)return "num not given"
+  
+  let res = 0
+  for(let i=1; i<=num; i++){
+   console.log(i)
+    res += i
+  }
+  return res  
+}
+ad(4)
+ad(6)
+ad(1)
+
+
+function ad(num) {
+  if(num === undefined)return "num not given"
+ return (num * (num + 1))/2
+}
+ad(4)
+ad(6)
+ad(1)
