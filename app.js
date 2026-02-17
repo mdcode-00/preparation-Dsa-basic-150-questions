@@ -823,3 +823,11 @@ function getDigitalRoot(num) {
 
 getDigitalRoot(9875);
 
+//  Checks if a number is a power of 2.
+function isPower(n) {
+  console.log("Bitwise result:", n & (n - 1));
+  
+  return n > 0 && (n & (n - 1)) === 0;
+}
+
+isPower(8);
