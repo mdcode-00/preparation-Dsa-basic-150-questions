@@ -801,3 +801,25 @@ for(let i = 1; i<=num; i++){
 fi(16)
 fi(20)
 fi(1)
+
+
+function getDigitalRoot(num) { 
+  // Keep reducing until number becomes a single digit
+  while (num >= 10) {
+    let sum = 0;
+
+    // Extract and sum each digit
+    while (num > 0) {
+      sum += num % 10;              // Get last digit
+      num = Math.floor(num / 10);   // Remove last digit
+    }
+
+    console.log("Intermediate sum:", sum);
+    num = sum; // Continue process with new sum
+  }
+
+  return num; 
+}
+
+getDigitalRoot(9875);
+
