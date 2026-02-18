@@ -902,3 +902,42 @@ return (res / num.length);
 ff([2, 4, 6]); // 4
 ff([1, 2, 3, 4, 5]); // 3
 ff([10, 20, 30]); // 20
+
+
+
+// Finds the most frequent number (mode) in an array.
+function f(num) {
+
+// Object to store frequency of each number
+let res = {};
+
+// Track highest frequency found so far
+let maxval = 0;
+
+// Track number with highest frequency
+let maxKey = null;
+
+// Loop through the array
+for (let i = 0; i < num.length; i++) {
+
+// Current number
+let n = num[i];
+
+// Increase count (initialize to 0 if not exists)
+res[n] = (res[n] || 0) + 1;
+
+// If this number's frequency is greater than max found
+if (res[n] > maxval) {
+maxval = res[n]; // update max frequency
+maxKey = n; // update most frequent number
+}
+}
+
+// Object keys are strings, so convert back to Number
+return Number(maxKey);
+}
+
+// Examples
+f([1, 2, 2, 3]); // 2
+f([4, 4, 4, 5, 5]); // 4
+
