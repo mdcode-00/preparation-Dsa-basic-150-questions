@@ -877,3 +877,28 @@ console.log(fin(15));  // [1,3,5,15]
 
 
 
+
+// Calculates the average of numbers in an array.
+function ff(num) {
+
+// Variable to store the total sum
+let res = 0;
+
+// Loop through each element in the array
+for (let i = 0; i < num.length; i++) {
+
+// Add current element to the total sum
+res += num[i];
+}
+
+// Print total sum (for debugging / checking)
+console.log(res);
+
+// Return average (sum divided by number of elements)
+return (res / num.length);
+}
+
+// Examples
+ff([2, 4, 6]); // 4
+ff([1, 2, 3, 4, 5]); // 3
+ff([10, 20, 30]); // 20
