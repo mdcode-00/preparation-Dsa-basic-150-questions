@@ -833,7 +833,7 @@ function isPower(n) {
 isPower(8);
 
 
-
+// Generates a Fibonacci sequence up to `num` elements using recursion
 function fibonacci(num, pos = 1, res = [0, 1]) {
 
   // Edge case: if num is 0 or negative, return empty array
@@ -854,3 +854,26 @@ function fibonacci(num, pos = 1, res = [0, 1]) {
 console.log(fibonacci(3));
 console.log(fibonacci(5)); //[0, 1, 1, 2, 3]
 console.log(fibonacci(7));
+
+
+//  Finds numbers that can multiply with another number
+function fin(num) {
+  let res = [];
+
+  for (let i = 1; i <= num; i++) {
+    if (num % i === 0) {
+      res.push(i);
+    }
+  }
+
+  return res;
+}
+
+// Examples
+console.log(fin(6));   // [1,2,3,6]
+console.log(fin(12));  // [1,2,3,4,6,12]
+console.log(fin(15));  // [1,3,5,15]
+
+
+
+
