@@ -831,3 +831,26 @@ function isPower(n) {
 }
 
 isPower(8);
+
+
+
+function fibonacci(num, pos = 1, res = [0, 1]) {
+
+  // Edge case: if num is 0 or negative, return empty array
+  if (num <= 0) return [];
+
+  // Base case: stop recursion when desired length is reached
+  if (num === res.length) return res;
+
+  // Add next Fibonacci number:
+  // current number = previous number + number before previous
+  res.push(res[pos] + res[pos - 1]);
+
+  // Recursive call:
+  // Move to next position and continue building the sequence
+  return fibonacci(num, pos + 1, res);
+}
+
+console.log(fibonacci(3));
+console.log(fibonacci(5)); //[0, 1, 1, 2, 3]
+console.log(fibonacci(7));
