@@ -961,3 +961,29 @@ function countCharacters(str) {
 }
 
 countCharacters("code"); // 4
+
+
+
+// Generates a repeated number pattern up to `n`
+
+function generateNumberPattern(n) {
+
+  // Array to store the final pattern
+  let result = [];
+
+  // Outer loop: iterate from 1 to n
+  for (let i = 1; i <= n; i++) {
+
+    // Inner loop: repeat numbers from 1 to current i
+    for (let j = 1; j <= i; j++) {
+
+      // Add current number to the result array
+      result.push(j);
+    }
+  }
+
+  // Return the completed pattern
+  return result;
+}
+
+generateNumberPattern(4); // [1, 1,2, 1,2,3, 1,2,3,4]
