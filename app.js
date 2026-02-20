@@ -987,3 +987,42 @@ function generateNumberPattern(n) {
 }
 
 generateNumberPattern(4); // [1, 1,2, 1,2,3, 1,2,3,4]
+
+
+
+// Calculates the sum of all prime divisors of a given number
+function sumPrimeDivisors(num) {
+
+  // Variable to store the sum of prime divisors
+  let sum = 0;
+
+  // Loop through all numbers from 2 up to the given number
+  for (let i = 2; i <= num; i++) {
+    console.log(i); // Debug: current number being checked
+
+    // Assume current number is prime
+    let isPrime = true;
+
+    // Check if i is prime by testing divisibility up to sqrt(i)
+    for (let j = 2; j * j <= i; j++) {
+      console.log(j); // Debug: divisor being tested
+
+      if (i % j === 0) {
+        // Not a prime number
+        isPrime = false;
+        break; // Exit inner loop early
+      }
+    }
+
+    // If i is prime AND divides the original number evenly
+    if (isPrime && num % i === 0) {
+      sum += i; // Add to sum of prime divisors
+    }
+  }
+
+  // Return the total sum of prime divisors
+  return sum;
+}
+
+// Example usage
+sumPrimeDivisors(6); // 5 (2 + 3)
