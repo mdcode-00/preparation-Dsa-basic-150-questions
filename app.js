@@ -941,3 +941,23 @@ return Number(maxKey);
 f([1, 2, 2, 3]); // 2
 f([4, 4, 4, 5, 5]); // 4
 
+
+
+// Counts how many characters are in a string (without using .length)
+function countCharacters(str) {
+
+  // Variable to store the total count
+  let count = 0;
+
+  // Loop through each character in the string
+  for (const char of str) {
+
+    // Increase count for every character found
+    count++;
+  }
+
+  // Return the total number of characters
+  return count;
+}
+
+countCharacters("code"); // 4
