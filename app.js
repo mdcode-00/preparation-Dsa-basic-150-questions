@@ -1026,3 +1026,39 @@ function sumPrimeDivisors(num) {
 
 // Example usage
 sumPrimeDivisors(6); // 5 (2 + 3)
+
+
+
+// Finds the second largest unique number in an array
+function findSecondLargest(numbers) {
+
+  // If array has less than 2 elements, no second largest exists
+  if (numbers.length < 2) return null;
+
+  // Variables to store the largest and second largest values
+  let largest = -Infinity;
+  let second = -Infinity;
+
+  console.log(second, largest); // Debug: initial values
+
+  // Loop through each number in the array
+  for (let n of numbers) {
+    console.log(n); // Debug: current number being checked
+
+    // If current number is greater than largest
+    if (n > largest) {
+      second = largest;  // Update second largest
+      largest = n;       // Update largest
+    } 
+    // If current number is between largest and second largest
+    else if (n > second && n !== largest) {
+      second = n;
+    }
+  }
+
+  // If no valid second largest found, return null
+  return second === -Infinity ? null : second;
+}
+
+// Example usage
+findSecondLargest([10, 20, 4, 45, 99]); // 45
