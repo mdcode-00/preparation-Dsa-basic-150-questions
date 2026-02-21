@@ -1062,3 +1062,47 @@ function findSecondLargest(numbers) {
 
 // Example usage
 findSecondLargest([10, 20, 4, 45, 99]); // 45
+
+
+
+// Finds the longest substring without repeating characters
+function findLongestUniqueSubstring(str) {
+
+  // Set to store unique characters in current window
+  let charSet = new Set();
+
+  // Left pointer of sliding window
+  let left = 0;
+
+  // Variable to store maximum length found
+  let maxLen = 0;
+
+  // Variable to store starting index of longest substring
+  let start = 0;
+
+  // Move right pointer across the string
+  for (let right = 0; right < str.length; right++) {
+
+    console.log(str[right]); // Debug: current character
+
+    // If character already exists in set, shrink window from left
+    while (charSet.has(str[right])) {
+      charSet.delete(str[left]);
+      left++;
+    }
+
+    // Add current character to set
+    charSet.add(str[right]);
+
+    // Update max length if current window is larger
+    if (right - left + 1 > maxLen) {
+      maxLen = right - left + 1;
+      start = left;
+    }
+  }
+
+  // Return longest substring without repeating characters
+  return str.substring(start, start + maxLen);
+}
+
+findLongestUniqueSubstring('abcabcbb'); // "abc"
