@@ -1106,3 +1106,35 @@ function findLongestUniqueSubstring(str) {
 }
 
 findLongestUniqueSubstring('abcabcbb'); // "abc"
+
+
+
+
+// Finds the sum of numbers at even indexes in an array
+function sumEvenIndexNumbers(numbers) {
+
+  // Variable to store total sum
+  let totalSum = 0;
+
+  // Loop through the array
+  for (let index = 0; index < numbers.length; index++) {
+
+    console.log(index % 2 === 0); // Debug: is index even?
+
+    // Check if index is even
+    if (index % 2 === 0) {
+
+      console.log(index);        // Debug: current index
+      console.log(numbers[index]); // Debug: value at index
+
+      // Add value at even index to total
+      totalSum += numbers[index];
+    }
+  }
+
+
+  return totalSum;
+}
+
+sumEvenIndexNumbers([2, 4, 6, 8, 10]); // 18  (2 + 6 + 10)
+sumEvenIndexNumbers([1, 3, 5, 7]);     // 6   (1 + 5)
