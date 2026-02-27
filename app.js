@@ -1138,3 +1138,65 @@ function sumEvenIndexNumbers(numbers) {
 
 sumEvenIndexNumbers([2, 4, 6, 8, 10]); // 18  (2 + 6 + 10)
 sumEvenIndexNumbers([1, 3, 5, 7]);     // 6   (1 + 5)
+
+
+
+// Finds all prime numbers between two given numbers (inclusive)
+function prin(num) {
+
+  // Destructure the input array into start and end values
+  let [n1, n2] = num;
+
+  console.log("Start:", n1); // Debug: starting number
+  console.log("End:", n2);   // Debug: ending number
+
+  // If range is invalid, return empty array
+  if (n2 < 2 || n1 > n2) {
+    console.log("Invalid range");
+    return [];
+  }
+
+  // Create a sieve array and assume all numbers are prime (true)
+  let sieve = new Array(n2 + 1).fill(true);
+
+  // 0 and 1 are not prime numbers
+  sieve[0] = false;
+  sieve[1] = false;
+
+  // Use Sieve of Eratosthenes algorithm
+  for (let i = 2; i * i <= n2; i++) {
+
+    console.log("Checking number:", i); // Debug
+
+    // If number is still marked as prime
+    if (sieve[i]) {
+
+      console.log(i, "is prime. Marking multiples...");
+
+      // Mark all multiples of i as not prime
+      for (let j = i * i; j <= n2; j += i) {
+        sieve[j] = false;
+        console.log("Marking as not prime:", j); // Debug
+      }
+    }
+  }
+
+  // Array to store result primes
+  let res = [];
+
+  // Collect prime numbers within the given range
+  for (let i = Math.max(2, n1); i <= n2; i++) {
+
+    console.log("Testing:", i); // Debug
+
+    if (sieve[i]) {
+      console.log("Prime found:", i); // Debug
+      res.push(i);
+    }
+  }
+
+  return res;
+}
+
+console.log(prin([10, 30])); // [11, 13, 17, 19, 23, 29]
+console.log(prin([1, 10]));  // [2, 3, 5, 7]
