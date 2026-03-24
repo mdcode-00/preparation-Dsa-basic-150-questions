@@ -1200,3 +1200,28 @@ function prin(num) {
 
 console.log(prin([10, 30])); // [11, 13, 17, 19, 23, 29]
 console.log(prin([1, 10]));  // [2, 3, 5, 7]
+
+
+function modPow(base, exp, mod) {   
+  let result = 1;                    // commit: "feat: initialize result as 1 (multiplicative identity)"
+  base = base % mod;                 // commit: "fix: apply base % mod to handle large base values"
+ 
+  // Process each bit of exp from LSB to MSB
+  while (exp > 0) {                  // commit: "feat: add binary exponentiation loop"
+ 
+    // If current bit of exp is 1, multiply result by base
+    if (exp % 2 === 1) {            // check odd bit to decide multiply"
+      result = (result * base) % mod;
+    }
+ 
+    base = (base * base) % mod;      // square the base at each step"
+    exp = Math.floor(exp / 2);       // shift exp right (divide by 2)"
+  }
+ 
+  return result;                
+}
+ 
+// Example usage
+console.log(modPow(2, 10, 1000));   // add basic example → 24 (2^10=1024, 1024%1000=24)"
+console.log(modPow(3, 200, 13));    // add large exponent example → 9"
+console.log(modPow(10, 0, 7));    //  add zero exponent edge case → 1" 
