@@ -1225,3 +1225,31 @@ function modPow(base, exp, mod) {
 console.log(modPow(2, 10, 1000));   // add basic example → 24 (2^10=1024, 1024%1000=24)"
 console.log(modPow(3, 200, 13));    // add large exponent example → 9"
 console.log(modPow(10, 0, 7));    //  add zero exponent edge case → 1" 
+
+
+
+// Counts numbers from 1 to N that are coprime with both A and B
+function coprimeCount(N, A, B) {     
+  let count = 0;                     
+
+  // Check every number from 1 to N
+  for (let i = 1; i <= N; i++) {     
+ 
+    // A number is coprime with both A and B if gcd with each equals 1
+    if (gcd(i, A) === 1 && gcd(i, B) === 1) { 
+      count++;                       
+    }
+  }
+  return count;                      
+  // Computes Greatest Common Divisor using Euclidean algorithm
+  function gcd(a, b) {               
+    while (b) {
+      [a, b] = [b, a % b];           // commit: "feat: swap using destructuring for clean Euclidean step"
+    }
+    return a;                        // commit: "feat: return gcd when remainder becomes 0"
+  }
+}
+
+console.log(coprimeCount(10, 2, 3)); // basic example → 3  (numbers: 1, 5, 7)"
+console.log(coprimeCount(12, 3, 5)); // add second example → 4 (numbers: 1, 7, 11, 13 — wait, ≤12 → 1,7,11)"
+console.log(coprimeCount(1, 1, 1));  // add edge case N=1 → 1 (only 1, gcd(1,x)=1 always)"
