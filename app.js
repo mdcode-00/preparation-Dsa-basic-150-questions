@@ -1253,3 +1253,20 @@ function coprimeCount(N, A, B) {
 console.log(coprimeCount(10, 2, 3)); // basic example → 3  (numbers: 1, 5, 7)"
 console.log(coprimeCount(12, 3, 5)); // add second example → 4 (numbers: 1, 7, 11, 13 — wait, ≤12 → 1,7,11)"
 console.log(coprimeCount(1, 1, 1));  // add edge case N=1 → 1 (only 1, gcd(1,x)=1 always)"
+
+
+// Finds the only non-duplicate number in an array using XOR
+function findUnique(arr) {          
+
+  let res = 0;                      
+
+  // XOR all elements — duplicates cancel out (a ^ a = 0), unique remains
+  for (let i = 0; i < arr.length; i++) {   
+    res = res ^ arr[i];              // commit: "feat: apply XOR to accumulate result"
+  }
+
+  return res;                        
+}
+console.log(findUnique([1, 2, 3, 2, 1]));       // basic example → 3"
+console.log(findUnique([4, 1, 2, 1, 2]));       // unique at start → 4"
+console.log(findUnique([7]));                    // single element edge case → 7"
