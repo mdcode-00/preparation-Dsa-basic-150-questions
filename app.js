@@ -1270,3 +1270,28 @@ function findUnique(arr) {
 console.log(findUnique([1, 2, 3, 2, 1]));       // basic example → 3"
 console.log(findUnique([4, 1, 2, 1, 2]));       // unique at start → 4"
 console.log(findUnique([7]));                    // single element edge case → 7"
+
+
+
+// Calculates the area of a polygon using the Shoelace Formula
+function calculatePolygonArea(arr) {      
+
+  let crossProductSum = 0;               
+
+  // Iterate through vertices, pairing each with the next (wraps around)
+  for (let i = 0; i < arr.length; i++) {   
+    const current = arr[i];                 
+    const next = arr[(i + 1) % arr.length];// extract next vertex with wrap-around using modulo"
+
+    // Shoelace cross product: (x1*y2) - (y1*x2)
+    crossProductSum += (current[0] * next[1]) - (current[1] * next[0]);
+                                           
+  }
+
+  return Math.abs(crossProductSum) / 2;   
+}
+
+// Example usage
+console.log(calculatePolygonArea([[0,0],[2,0],[2,2],[0,2]])); // 2x2 square → 4"
+console.log(calculatePolygonArea([[0,0],[4,0],[4,3],[0,3]])); // 4x3 rectangle → 12"
+console.log(calculatePolygonArea([[0,0],[1,0],[0,1]]));       // right triangle → 0.5"
