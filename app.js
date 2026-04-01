@@ -1295,3 +1295,64 @@ function calculatePolygonArea(arr) {
 console.log(calculatePolygonArea([[0,0],[2,0],[2,2],[0,2]])); // 2x2 square → 4"
 console.log(calculatePolygonArea([[0,0],[4,0],[4,3],[0,3]])); // 4x3 rectangle → 12"
 console.log(calculatePolygonArea([[0,0],[1,0],[0,1]]));       // right triangle → 0.5"
+
+
+
+// Sort points left→right, bottom→top for monotone chain
+function kk(points) {
+
+  ///first sort by x, then by y if x's are equal (lexicographic order)
+  points.sort((a, b) => {
+    a[0] === b[0] ? a[1] - b[1] : a[0] - b[0]
+  })
+
+  // Edge case: 0 or 1 point → already a "hull"
+  if (points.length <= 1) return points
+
+  // Cross product of vectors OA and OB
+  // > 0 → left turn, = 0 → collinear, < 0 → right turn
+  const cross = (o, a, b) => {
+    return (a[0] - o[0]) * (b[1] - o[1]) -
+           (a[1] - o[1]) * (b[0] - o[0])
+  }
+
+  // Build lower hull: left to right
+  // Pop if last 3 points don't make a left turn (counter-clockwise)
+  const lower = []
+  for (let p of points) {
+    // console.log(p)
+    while (lower.length >= 2 &&
+           cross(lower[lower.length - 2],
+                 lower[lower.length - 1],
+                 p) <= 0) {
+      lower.pop()
+    }
+    lower.push(p)
+  }
+
+  // console.log(lower)
+
+  /// upper hull: right to left, same logic mirrored
+  const upper = []
+  for (let i = points.length - 1; i >= 0; i--) {
+    let p = points[i]
+    while (upper.length >= 2 &&
+           cross(upper[upper.length - 2],
+                 upper[upper.length - 1],
+                 p) <= 0) {
+      upper.pop()
+    }
+    upper.push(p)
+  }
+
+  /// pop last of each — they're duplicates of the other hull's endpoints
+  lower.pop()
+  upper.pop()
+  console.log(upper)
+  console.log(lower)
+
+  // Concat lower + upper → full clockwise hull polygon
+  return lower.concat(upper)
+}
+
+kk([[0,0], [1,1], [2,2], [3,3]]) ///[[0,0], [3,3]]
