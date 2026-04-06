@@ -1356,3 +1356,50 @@ function kk(points) {
 }
 
 kk([[0,0], [1,1], [2,2], [3,3]]) ///[[0,0], [3,3]]
+
+
+// Builds the Convex Hull of a point set using the Monotone Chain Algorithm
+function convexHull(arr) {                 
+
+  // Sort points by x, then by y if x is equal
+  arr.sort((a, b) => {                      
+    return a[0] === b[0] ? a[1] - b[1] : a[0] - b[0];
+  });
+
+  // Cross product: negative/zero means right turn or collinear (remove point)
+  let cross = (a, b, c) => {               // define cross product helper to detect turn direction"
+    return (b[0] - a[0]) * (c[1] - a[1]) -
+           (b[1] - a[1]) * (c[0] - a[0]);
+  };
+
+  // Build upper hull (left to right)
+  let upper = [];                           
+
+  for (let a of arr) {                      // add loop to build upper hull left to right"
+    while (upper.length >= 2 &&
+      cross(upper[upper.length - 2], upper[upper.length - 1], a) <= 0) {
+      upper.pop();                          
+    }
+    upper.push(a);                        
+  }
+
+  // Build lower hull (right to left)
+  let lower = [];                           
+
+  for (let i = arr.length - 1; i > 0; i--) {  // add loop to build lower hull right to left"
+    let a = arr[i];
+    while (lower.length >= 2 &&
+      cross(lower[lower.length - 2], lower[lower.length - 1], a) <= 0) {
+      lower.pop();                        
+    }
+    lower.push(a);                         
+  }
+
+  upper.pop();                              //  remove last point of upper (shared with lower)"
+  lower.pop();                              //  remove last point of lower (shared with upper)"
+
+  return upper.concat(lower);              // merge upper and lower hull into final convex hull"
+}
+console.log(convexHull([[0,0],[2,2],[1,1],[3,3]]));      // collinear points → hull edge only"
+console.log(convexHull([[0,0],[4,0],[4,4],[0,4],[2,2]]));// square with interior point → 4 hull points"
+console.log(convexHull([[0,0],[1,0],[0,1],[1,1]]));      // basic square → all 4 corner points"
