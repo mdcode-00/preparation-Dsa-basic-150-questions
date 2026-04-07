@@ -1403,3 +1403,60 @@ function convexHull(arr) {
 console.log(convexHull([[0,0],[2,2],[1,1],[3,3]]));      // collinear points → hull edge only"
 console.log(convexHull([[0,0],[4,0],[4,4],[0,4],[2,2]]));// square with interior point → 4 hull points"
 console.log(convexHull([[0,0],[1,0],[0,1],[1,1]]));      // basic square → all 4 corner points"
+
+
+
+// Finds all prime numbers in range [a, b] using the Segmented Sieve of Eratosthenes
+function segmentedSieve(a, b) {           
+
+  // Step 1: Find all small primes up to √b using basic sieve
+  let limit = Math.floor(Math.sqrt(b));     // compute square root of b as sieve limit"
+
+  let isPrime = new Array(limit + 1).fill(true); // initialize isPrime array for small sieve"
+  isPrime[0] = isPrime[1] = false;          // mark 0 and 1 as non-prime"
+
+  // Sieve of Eratosthenes up to √b
+  for (let i = 2; i <= limit; i++) {       
+    if (isPrime[i]) {
+      for (let j = i * i; j <= limit; j += i) { // mark multiples of each prime as false"
+        isPrime[j] = false;
+      }
+    }
+  }
+
+  // Collect all small primes into array
+  let smallPrimes = [];                    
+  for (let i = 2; i <= limit; i++) {       
+    if (isPrime[i]) smallPrimes.push(i);    //push confirmed primes into smallPrimes"
+  }
+
+  // Step 2: Use small primes to sieve the segment [a, b]
+  let segment = new Array(b - a + 1).fill(true);
+
+  for (let p of smallPrimes) {           
+
+    // Find the first multiple of p that falls within [a, b]
+    let start = Math.ceil(a / p) * p;       // compute first multiple of p inside segment"
+    if (start === p) start += p;            // skip p itself so it stays marked as prime"
+
+    for (let j = start; j <= b; j += p) {  // mark all multiples of p as composite in segment"
+      segment[j - a] = false;              // offset j by a to map to segment index"
+    }
+  }
+
+
+  let res = [];                            
+
+  for (let i = 0; i < segment.length; i++) { 
+    if (a <= 1) segment[1 - a] = false;    // ensure 1 is never included as a prime"
+    if (segment[i]) res.push(a + i);       // push prime by reversing segment offset back to real value"
+  }
+
+  return res;                   
+}
+
+
+console.log(segmentedSieve(1, 30));        // range 1–30 → [2,3,5,7,11,13,17,19,23,29]"
+console.log(segmentedSieve(10, 50));       // mid-range → primes between 10 and 50"
+console.log(segmentedSieve(1, 2));         // minimal range → [2]"
+console.log(segmentedSieve(1, 1));         // edge case no primes → []"
