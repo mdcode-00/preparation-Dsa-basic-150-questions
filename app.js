@@ -1460,3 +1460,32 @@ console.log(segmentedSieve(1, 30));        // range 1–30 → [2,3,5,7,11,13,17
 console.log(segmentedSieve(10, 50));       // mid-range → primes between 10 and 50"
 console.log(segmentedSieve(1, 2));         // minimal range → [2]"
 console.log(segmentedSieve(1, 1));         // edge case no primes → []"
+
+
+// Extended GCD - Iterative (Euclidean Algorithm)
+// Returns gcd(a, b) and coefficients x, y such that: ax + by = gcd(a, b)
+//
+// Example:
+// Input: a = 88, b = 55
+// Output: gcd = 11, x = 2, y = -3
+// Verification: 88*(2) + 55*(-3) = 176 - 165 = 11
+
+function extendedGCD(a, b) {
+  let [r0, r1] = [a, b]; // remainders
+  let [x0, x1] = [1, 0]; // coefficients for 'a'
+  let [y0, y1] = [0, 1]; // coefficients for 'b'
+
+  while (r1 !== 0) {
+    const q = Math.floor(r0 / r1);
+
+    [r0, r1] = [r1, r0 - q * r1];
+    [x0, x1] = [x1, x0 - q * x1];
+    [y0, y1] = [y1, y0 - q * y1];
+  }
+
+  return { gcd: r0, x: x0, y: y0 };
+}
+
+// Example usage
+const { gcd, x, y } = extendedGCD(88, 55);
+console.log({ gcd, x, y });
