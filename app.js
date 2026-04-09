@@ -1489,3 +1489,63 @@ function extendedGCD(a, b) {
 // Example usage
 const { gcd, x, y } = extendedGCD(88, 55);
 console.log({ gcd, x, y });
+
+
+// Multiplies two 2x2 matrices using standard dot product formula
+function matMul(a, b) {                    
+  return [
+    [
+      a[0][0] * b[0][0] + a[0][1] * b[1][0],  // compute row0-col0 dot product"
+      a[0][0] * b[0][1] + a[0][1] * b[1][1],  // compute row0-col1 dot product"
+    ],
+    [
+      a[1][0] * b[0][0] + a[1][1] * b[1][0],  // compute row1-col0 dot product"
+      a[1][0] * b[0][1] + a[1][1] * b[1][1],  // compute row1-col1 dot product"
+    ],
+  ];
+}
+
+// Example usage
+console.log(matMul([[1,1],[1,0]], [[1,1],[1,0]])); // square Fibonacci matrix × itself"
+
+
+// Naive Matrix Exponentiation — O(n) 
+
+// Raises matrix A to power n by repeated multiplication — O(n)
+function matPowerNaive(A, n) {             
+
+  let result = [[1, 0], [0, 1]];           // initialize result as 2x2 identity matrix"
+
+  for (let i = 0; i < n; i++) {            // add loop to multiply A into result n times"
+    result = matMul(result, A);            // accumulate matrix power via repeated matMul"
+  }
+
+  return result;                           
+}
+
+
+// Fast Matrix Exponentiation — O(log n) 
+
+// Raises matrix A to power n using binary exponentiation — O(log n)
+function matPowerFast(A, n) {             
+
+  let result = [[1, 0], [0, 1]];  /// initialize result as 2x2 identity matrix"
+
+  while (n > 0) {                 /// add loop to process each bit of n"
+
+    if (n % 2 === 1) {            /// if current bit is set, multiply result by A"
+      result = matMul(result, A); //  absorb current A into result for odd exponent"
+    }
+
+    A = matMul(A, A);                      // commit: "feat: square A to advance to next binary power"
+    n = Math.floor(n / 2);                 // commit: "feat: right-shift n to process next bit"
+  }
+
+  return result;                         
+}
+
+// Example usage
+console.log(matPowerNaive([[1,1],[1,0]], 5)); //Fibonacci matrix^5 naive → F(6)=8 at [0][0]"
+console.log(matPowerFast([[1,1],[1,0]], 5));  //Fibonacci matrix^5 fast  → F(6)=8 at [0][0]"
+console.log(matPowerFast([[1,1],[1,0]], 10)); //matrix^10 → F(11)=89 at [0][0]"
+console.log(matPowerFast([[1,0],[0,1]], 99)); //identity matrix^any → stays identity"
