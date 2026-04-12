@@ -1549,3 +1549,38 @@ console.log(matPowerNaive([[1,1],[1,0]], 5)); //Fibonacci matrix^5 naive → F(6
 console.log(matPowerFast([[1,1],[1,0]], 5));  //Fibonacci matrix^5 fast  → F(6)=8 at [0][0]"
 console.log(matPowerFast([[1,1],[1,0]], 10)); //matrix^10 → F(11)=89 at [0][0]"
 console.log(matPowerFast([[1,0],[0,1]], 99)); //identity matrix^any → stays identity"
+
+
+// Computes (a^b) % p efficiently using Binary Exponentiation — O(log b)
+function modPow(a, b, p) {                
+
+  a = a % p;                               // commit: "feat: reduce base a modulo p to keep numbers small"
+
+  let res = 1;                            
+  while (b > 0) {                         
+
+    if (b % 2 === 1) {                     // if current bit is set, multiply res by current a"
+      res = (res * a) % p;                 // accumulate result with modulo to prevent overflow"
+    }
+
+    a = (a * a) % p;                       // square a modulo p to advance to next binary power"
+    b = Math.floor(b / 2);                 // right-shift b to move to next bit"
+  }
+
+  return res;                              // return (a^b) % p as final modular result"
+}
+
+
+// Modular Inverse via Fermat's Little Theorem 
+
+// Finds modular inverse of a under prime p using Fermat: a^(p-2) ≡ a^(-1) (mod p)
+// Only valid when p is prime and a % p !== 0
+function modInverse(a, p) {                
+  return modPow(a, p - 2, p);             // return a^(p-2) mod p as modular inverse of a"
+}
+
+console.log(modInverse(3, 5));   /// inverse of 3 mod 5 → 2  (3×2=6 ≡ 1 mod 5)"
+console.log(modInverse(10, 13)); /// inverse of 10 mod 13 → 4  (10×4=40 ≡ 1 mod 13)"
+console.log(modInverse(2, 7));   /// inverse of 2 mod 7 → 4  (2×4=8 ≡ 1 mod 7)"
+console.log(modPow(2, 10, 1000));/// 2^10 mod 1000 → 24"
+console.log(modPow(3, 0, 7));    /// edge case zero exponent → 1"
