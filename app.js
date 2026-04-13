@@ -1584,3 +1584,58 @@ console.log(modInverse(10, 13)); /// inverse of 10 mod 13 → 4  (10×4=40 ≡ 1
 console.log(modInverse(2, 7));   /// inverse of 2 mod 7 → 4  (2×4=8 ≡ 1 mod 7)"
 console.log(modPow(2, 10, 1000));/// 2^10 mod 1000 → 24"
 console.log(modPow(3, 0, 7));    /// edge case zero exponent → 1"
+
+
+
+// Counts total number of divisors of a number using Prime Factorization — O(√n)
+function countDivisors(num) {             
+  let temp = num;                           // copy num into temp to safely mutate during factorization"
+  let count = 1;                            // initialize count as 1 (multiplicative identity for divisor formula)"
+
+
+  for (let i = 2; i * i <= temp; i++) {    // add loop to trial divide up to √temp"
+
+    let ex = 0;                             // initialize exponent counter for current prime factor"
+
+    while (temp % i === 0) {               // add inner loop to fully extract prime factor i"
+      ex++;                                 //  increment exponent for each time i divides temp"
+      temp = Math.floor(temp / i);         // divide out factor i to reduce temp"
+    }
+
+    if (ex > 0) {                          // if i was a factor, apply divisor formula (ex+1)"
+      count *= (ex + 1);                   // multiply count by (exponent+1) per divisor formula"
+    }
+  }
+
+  // If temp > 1, a remaining prime factor exists with exponent 1
+  if (temp > 1) {                     
+    count *= 2;                            // multiply by 2 for the remaining prime (exponent 1 → 1+1)"
+  }
+
+  return count;                            // return total divisor count of original num"
+}
+
+
+// Find Number with Most Divisors in Range [1, n] 
+function mostDivisors(n) {               
+
+  let maxDiv = 0;                           
+  let bestNum = 1;                          
+
+  for (let i = 1; i <= n; i++) {          
+    let d = countDivisors(i);              //  compute divisor count for current number i"
+
+    maxDiv = d;                          // update maxDiv with new highest divisor count"
+    if (d > maxDiv) {                      // check if current number has more divisors than best so far"
+      bestNum = i;                         // update bestNum to current number with most divisors"
+    }
+  }
+
+  return `${bestNum} has ${maxDiv} divisors`; 
+}
+
+console.log(mostDivisors(10));   //// range 1–10 → 6 has 4 divisors"
+console.log(mostDivisors(20));   //// range 1–20 → 12 has 6 divisors"
+console.log(mostDivisors(100));  //// range 1–100 → 60 has 12 divisors"
+console.log(countDivisors(12));  //// divisors of 12 → 6 (1,2,3,4,6,12)"
+console.log(countDivisors(1));   //// edge case 1 → 1 divisor only"
