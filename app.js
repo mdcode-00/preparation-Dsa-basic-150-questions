@@ -1639,3 +1639,68 @@ console.log(mostDivisors(20));   //// range 1–20 → 12 has 6 divisors"
 console.log(mostDivisors(100));  //// range 1–100 → 60 has 12 divisors"
 console.log(countDivisors(12));  //// divisors of 12 → 6 (1,2,3,4,6,12)"
 console.log(countDivisors(1));   //// edge case 1 → 1 divisor only"
+
+
+//Modular Arithmetic Utilities 
+
+const MOD = 1_000_000_007n;               
+
+
+// Computes (a^b) % MOD using Binary Exponentiation — O(log b)
+function modPow(a, b) {          
+
+  let res = 1n;                   // initialize res as 1n (BigInt multiplicative identity)"
+  let base = BigInt(a);           // cast a to BigInt to ensure safe modular arithmetic"
+
+  while (b > 0n) {                // add loop to process each bit of exponent b"
+
+    if (b % 2n === 1n) {          // if current bit is set, multiply res by base"
+      res = (res * base) % MOD;   // accumulate res with modulo to prevent overflow"
+    }
+
+    base = (base * base) % MOD;   // square base modulo MOD to advance to next binary power"
+    b = b / 2n;                   // right-shift b using BigInt division (no Math.floor needed)"
+  }
+
+  return res;                             
+}
+
+
+// Computes modular inverse of a under MOD via Fermat's little theorem: a^(MOD-2)
+function modInverse(a) {                   
+  return modPow(a, MOD - 2n); // return a^(MOD-2) mod MOD as modular inverse of a"
+}
+
+
+
+
+// Computes nth Catalan number mod 10^9+7 using formula: C(2n,n) / (n+1)
+function catalan(n) { 
+
+  const max = 2 * n;  // compute max as 2n for factorial table upper bound"
+
+  // Precompute factorials up to 2n
+  let fact = new Array(max + 1).fill(1n);  // initialize factorial table of BigInt 1n up to 2n"
+
+  for (let i = 1; i <= max; i++) {        
+    fact[i] = (fact[i - 1] * BigInt(i)) % MOD; // compute fact[i] = fact[i-1] * i mod MOD"
+  }
+
+  // Apply Catalan formula C(2n, n) / (n+1) = (2n)! / (n! * (n+1)!)
+  let numerator = fact[2 * n];  // extract (2n)! as numerator of binomial"
+
+  let inv = (modInverse(fact[n]) *
+             modInverse(fact[n + 1])) % MOD; // compute combined inverse of n! and (n+1)! for denominator"
+
+  let res = (numerator * inv) % MOD;       //multiply numerator by inverse denominator to get Catalan result"
+
+  return res.toString();                   // return result as string to safely display large BigInt"
+}
+
+
+// Example usage
+console.log(catalan(3));       /// C(3)   → 5"
+console.log(catalan(5));        ///C(5)   → 42"
+console.log(catalan(10));       ///C(10)  → 16796"
+console.log(catalan(100));      ///C(100) → 558488487"
+console.log(catalan(100000));   ///C(10^5) stress test → large mod result"
