@@ -1753,3 +1753,48 @@ console.log(findMissingValue([ // no null anywhere → returns null"
   [1, 2, 3],
   [4, 8, 12],
 ]));
+
+
+// Checks if a number is a power of two by counting 1-bits in binary — O(log n)
+function isPowerOfTwo(num) {                // commit: "feat: add isPowerOfTwo function skeleton"
+
+  if (num <= 0) return false;              // commit: "feat: guard against zero and negatives — powers of two are positive"
+
+  const binary = num.toString(2);          // commit: "feat: convert num to binary string for bit inspection"
+
+  let count = 0;                           // commit: "feat: initialize count to track number of 1-bits"
+
+  // A power of two has exactly one 1-bit in its binary representation
+  for (let b of binary) {                  // commit: "feat: add loop to iterate over each bit character in binary string"
+
+    if (b === '1') {                       // commit: "feat: check if current bit is 1"
+      count++;                             // commit: "feat: increment count for each 1-bit found"
+    }
+  }
+
+  return count === 1;                      // commit: "feat: return true only if exactly one 1-bit exists (power of two)"
+}
+
+
+// ─── Bonus: O(1) Bitwise Approach ─────────────────────────────────────────────
+
+// Checks if a number is a power of two using bitwise AND trick — O(1)
+// A power of two n has the property: n & (n-1) === 0
+function isPowerOfTwoFast(num) {   
+
+  if (num <= 0) return false;     // guard against zero and negatives"
+
+  return (num & (num - 1)) === 0; // apply n&(n-1) trick — clears lowest set bit, must be 0 for powers of two"
+}
+
+
+// Example usage
+console.log(isPowerOfTwo(8));        //// 8  = 1000  → true  (2^3)"
+console.log(isPowerOfTwo(10));       //// 10 = 1010  → false (two 1-bits)"
+console.log(isPowerOfTwo(1));        //// 1  = 1     → true  (2^0)"
+console.log(isPowerOfTwo(0));        //// 0  → false (guard clause)"
+console.log(isPowerOfTwo(-4));       //// -4 → false (negative guard)"
+
+console.log(isPowerOfTwoFast(8));    //// 8   bitwise → true"
+console.log(isPowerOfTwoFast(10));  //// 10  bitwise → false"
+console.log(isPowerOfTwoFast(1024)); //// 1024 = 2^10 → true"
