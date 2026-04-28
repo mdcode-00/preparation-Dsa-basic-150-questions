@@ -1704,3 +1704,52 @@ console.log(catalan(5));        ///C(5)   → 42"
 console.log(catalan(10));       ///C(10)  → 16796"
 console.log(catalan(100));      ///C(100) → 558488487"
 console.log(catalan(100000));   ///C(10^5) stress test → large mod result"
+
+
+// Finds the missing value in an arithmetic sequence row of a 2D matrix — O(n*m)
+function findMissingValue(matrix) {       
+
+  for (let i = 0; i < matrix.length; i++) {
+
+    const row = matrix[i];                 // extract current row for cleaner access"
+
+    const nullIndex = row.indexOf(null);   // find index of missing value (null) in current row"
+
+    if (nullIndex !== -1) {   // check if current row contains a missing value"
+
+      // Find any known (non-null) value to derive the common ratio
+      const knownIndex = row.findIndex(v => v !== null);// locate first known value index to compute sequence ratio"
+
+      const ratio = row[knownIndex] / (knownIndex + 1); // compute ratio by dividing known value by its 1-based position"
+
+      return ratio * (nullIndex + 1); // multiply ratio by missing value's 1-based position to recover it"
+    }
+  }
+
+  return null;                 
+}
+
+
+// Example usage
+console.log(findMissingValue([  // null at row1-col1 → 6 (sequence 3,6,9)"
+  [2,    4,  6],
+  [3, null,  9],
+  [5,   10, 15],
+]));
+
+console.log(findMissingValue([  // null at row0-col0 → 1 (sequence 1,2,3)"
+  [null, 2,  3],
+  [4,    8, 12],
+  [5,   10, 15],
+]));
+
+console.log(findMissingValue([  // null at last col → 15 (sequence 5,10,15)"
+  [2,  4,  6],
+  [3,  6,  9],
+  [5, 10, null],
+]));
+
+console.log(findMissingValue([ // no null anywhere → returns null"
+  [1, 2, 3],
+  [4, 8, 12],
+]));
